@@ -63,3 +63,99 @@ a:hover, button:hover {
   background: rgba(0, 0, 0, 0.45);
   padding: 48px 32px;
 }
+/* =================================
+   🌿 QUAY VỀ – MOBILE FOUNDATION
+   dùng chung toàn website
+================================= */
+
+/* ----- reset ----- */
+*{
+  box-sizing:border-box;
+}
+
+html,body{
+  max-width:100%;
+  overflow-x:hidden;
+  -webkit-text-size-adjust:100%;
+}
+
+/* ----- typography mobile dễ đọc ----- */
+body{
+  font-size:16px;
+  line-height:1.7;
+}
+
+/* ----- section padding an toàn ----- */
+.section,
+.wrap{
+  padding-left:18px !important;
+  padding-right:18px !important;
+}
+
+/* ----- buttons dễ bấm bằng ngón tay ----- */
+.actions a,
+.btn,
+button{
+  min-height:44px;
+  padding:12px 22px;
+  font-size:15px;
+}
+
+/* ----- images responsive ----- */
+img{
+  max-width:100%;
+  height:auto;
+  display:block;
+}
+
+/* ----- grid auto co ----- */
+.cards,
+.grid{
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr)) !important;
+}
+
+/* ----- popup không tràn màn hình ----- */
+.intro-box{
+  max-height:85vh;
+  overflow-y:auto;
+}
+
+/* ----- background fixed mượt hơn trên mobile ----- */
+.bg{
+  background-attachment:scroll;
+}
+
+/* ----- form không bị zoom iPhone ----- */
+input,textarea,select{
+  font-size:16px;
+}
+
+/* =================================
+   📱 Breakpoint riêng cho điện thoại
+================================= */
+@media (max-width:768px){
+
+  h1{ font-size:26px; }
+  h2{ font-size:22px; }
+  h3{ font-size:18px; }
+
+  .actions{
+    flex-direction:column;
+    gap:12px;
+  }
+
+  .btns{
+    flex-direction:column;
+  }
+
+  .item img{
+    height:150px;
+  }
+
+  .candle{
+    width:200px;
+    height:200px;
+  }
+}
+
+
