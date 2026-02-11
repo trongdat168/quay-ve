@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<title>Quay Về – Gieo Duyên</title>
+
+<style>
+/* ===== Fade khi mở trang ===== */
+body{
+  margin:0;
+  font-family:serif;
+  background:#0f1412;
+  color:#f3efe6;
+  text-align:center;
+  opacity:0;
+  animation:fadeIn 2.2s ease forwards;
+}
+
+@keyframes fadeIn{
+  to{opacity:1;}
+}
+
+
+/* ===== nền thiền ===== */
+.bg{
+  position:fixed;
+  inset:0;
+  background:url("images/home.png") center/cover no-repeat;
+  filter: blur(10px) brightness(.28);
+  z-index:0;
+}
+
+.wrap{
+  position:relative;
+  z-index:1;
+  max-width:900px;
+  margin:auto;
+  padding:50px 20px 80px;
+}
+
+
+/* ===== chữ ===== */
+h1{
+  font-size:30px;
+  font-weight:500;
+  letter-spacing:1px;
+  margin-bottom:10px;
+}
+
+.sub{
+  opacity:.75;
+  line-height:1.7;
+  margin-bottom:35px;
+}
+
+
+/* ===== buttons ===== */
+.btns{
+  display:flex;
+  gap:16px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-bottom:45px;
+}
+
+.btn{
+  padding:14px 26px;
+  border-radius:30px;
+  text-decoration:none;
+  font-size:15px;
+  transition:.3s;
+  backdrop-filter:blur(6px);
+}
+
+.zalo{
+  background:rgba(42,166,255,.85);
+  color:#fff;
+}
+
+.btn:hover{
+  transform:translateY(-3px);
+}
+
+
+/* ===== gallery ===== */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(170px,1fr));
+  gap:20px;
+}
+
+.item{
+  background:rgba(255,255,255,.05);
+  padding:10px;
+  border-radius:14px;
+
+  /* scroll reveal */
+  opacity:0;
+  transform:translateY(30px);
+  transition:1s ease;
+}
+
+.item.show{
+  opacity:1;
+  transform:none;
+}
+
+.item:hover{
+  transform:scale(1.03);
+}
+
+.item img{
+  width:100%;
+  height:170px;
+  object-fit:cover;
+  border-radius:10px;
+}
+
+.name{
+  margin-top:8px;
+  font-size:14px;
+}
+
+
+/* ===== lời nhắc ===== */
+.note{
+  margin-top:45px;
+  opacity:.65;
+  font-size:14px;
+  line-height:1.7;
+}
+
+/* =========================
+   🌅 SƯƠNG KHÓI NHẸ
+========================= */
+.mist{
+  position:fixed;
+  inset:-20%;
+  z-index:0;
+  pointer-events:none;
+
+  background:
+    radial-gradient(circle at 30% 40%, rgba(255,255,255,.06), transparent 40%),
+    radial-gradient(circle at 70% 60%, rgba(255,255,255,.05), transparent 45%);
+
+  animation:mistMove 40s linear infinite;
+  filter:blur(40px);
+}
+
+@keyframes mistMove{
+  from{ transform:translateX(-5%); }
+  to{ transform:translateX(5%); }
+}
+
+
+
+/* =========================
+   🕯 ÁNH NẾN
+========================= */
+.candle{
+  position:fixed;
+  bottom:40px;
+  left:50%;
+  transform:translateX(-50%);
+  width:260px;
+  height:260px;
+  pointer-events:none;
+  z-index:1;
+
+  background:radial-gradient(circle,
+    rgba(255,210,120,.35) 0%,
+    rgba(255,170,80,.18) 35%,
+    transparent 70%);
+
+  border-radius:50%;
+
+  animation:flicker 3.5s ease-in-out infinite;
+}
+
+@keyframes flicker{
+  0%,100%{ opacity:.55; transform:translateX(-50%) scale(1); }
+  50%{ opacity:.7; transform:translateX(-50%) scale(1.04); }
+}
+
+/* ===== quay về ===== */
+.back-home{
+  margin-top:50px;
+}
+
+.back-home a{
+  color:#ddd;
+  text-decoration:none;
+  font-size:14px;
+  opacity:.6;
+  border-bottom:1px solid rgba(255,255,255,.25);
+  padding-bottom:2px;
+  transition:.3s;
+}
+
+.back-home a:hover{
+  opacity:1;
+}
+
+
+</style>
+</head>
+
+
+
+<body>
+
+<!-- nền -->
+<div class="bg"></div>
+
+<!-- sương khói -->
+<div class="mist"></div>
+
+<!-- ánh nến -->
+<div class="candle"></div>
+
+
+<div class="wrap">
+
+<h1>🌿 Góc Gieo Duyên</h1>
+
+<div class="sub">
+Nơi người hữu tâm gieo duyên gửi tặng<br>
+và người hữu duyên thỉnh pháp bảo về nhà
+</div>
+
+
+<!-- ===== ZALO ===== -->
+<div class="btns">
+  <a class="btn zalo" href="https://zalo.me/0986638139" target="_blank">
+    🌿 Gửi Gieo Duyên
+  </a>
+
+  <a class="btn zalo" href="https://zalo.me/0986638139" target="_blank">
+    📦 Thỉnh Pháp Bảo
+  </a>
+</div>
+
+
+
+<!-- ===== GALLERY ===== -->
+<div class="grid">
+
+  <div class="item">
+    <img src="./images/phapbao/kinh-diatang.jpeg">
+    <div class="name">Kinh Địa Tạng</div>
+  </div>
+
+  <div class="item">
+    <img src="./images/phapbao/kinh-adida.jpeg">
+    <div class="name">Kinh A Di Đà</div>
+  </div>
+
+  <div class="item">
+    <img src="./images/phapbao/kinh-duocsu.jpeg">
+    <div class="name">Kinh Dược Sư</div>
+  </div>
+
+  <div class="item">
+    <img src="./images/phapbao/kinh-phohien.jpeg">
+    <div class="name">Kinh Phổ Hiền</div>
+  </div>
+
+</div>
+
+
+
+<div class="note">
+Cho đi là còn mãi • Nhận về là nhân duyên<br><br>
+Nguyện người đến đây đều nhẹ lòng hơn một chút
+</div>
+
+<div class="back-home">
+  <a href="index.html">← Quay về</a>
+</div>
+
+
+</div>
+
+
+
+<!-- ===== JS: reveal ===== -->
+<script>
+/* ✨ scroll reveal */
+const items = document.querySelectorAll(".item");
+
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add("show");
+    }
+  });
+},{threshold:0.2});
+
+items.forEach(i=>observer.observe(i));
+</script>
+
+</body>
+</html>
+

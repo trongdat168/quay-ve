@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Quay Về – Pháp Bảo</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .intro-text{
+      max-width: 680px;
+      margin: 0 auto 40px;
+      line-height: 1.8;
+      opacity: .9;
+    }
+
+    .cards{
+      display: grid;
+      gap: 18px;
+      max-width: 700px;
+      margin: 30px auto;
+    }
+
+    .card{
+      padding: 26px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(4px);
+      transition: .3s;
+    }
+
+    .card:hover{
+      background: rgba(255,255,255,0.12);
+      transform: translateY(-2px);
+    }
+
+    .card h3{
+      margin-bottom: 10px;
+      font-weight: normal;
+    }
+
+    .card p{
+      font-size: 14px;
+      opacity: .85;
+      margin-bottom: 14px;
+      line-height: 1.6;
+    }
+
+    .card a, .card button{
+      background: transparent;
+      border: 1px solid #ccc;
+      color: #fff;
+      padding: 6px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .verse{
+      margin-top: 60px;
+      font-style: italic;
+      opacity: .7;
+      line-height: 1.8;
+    }
+
+
+    /* ============================= */
+    /*        POPUP ĐỌC KINH        */
+    /* ============================= */
+
+    .pdf-modal{
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.75);
+      backdrop-filter: blur(6px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      padding: 30px;
+      animation: fadeIn .3s ease;
+    }
+
+    .pdf-modal.active{
+      display: flex;
+    }
+
+    .pdf-box{
+      width: 95%;
+      height: 92%;
+      max-width: 1200px;
+      background: rgba(20,20,20,.95);
+      border-radius: 20px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 0 40px rgba(0,0,0,.6);
+    }
+
+    .pdf-top{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .pdf-title{
+      font-size: 18px;
+      opacity: .9;
+    }
+
+    .close-btn{
+      border: 1px solid #aaa;
+      background: transparent;
+      color: #fff;
+      padding: 6px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    .close-btn:hover{
+      background: rgba(255,255,255,.12);
+    }
+
+    .pdf-frame{
+      flex: 1;
+      width: 100%;
+      border-radius: 12px;
+      border: none;
+      background: #f3efe6;
+    }
+
+    @keyframes fadeIn{
+      from{opacity:0}
+      to{opacity:1}
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div class="bg" style="background-image: url('images/phap-bao.png');"></div>
+
+<section class="section overlay">
+
+  <h2>Thỉnh Pháp Bảo</h2>
+
+  <p class="intro-text">
+    Kinh sách không phải để đọc cho nhiều,<br>
+    mà để mở ra khi tâm cần nương tựa.<br><br>
+    Đôi khi chỉ một câu thôi…<br>
+    cũng đủ soi sáng cả một ngày dài.
+  </p>
+
+
+  <!-- ===== Các cách thỉnh pháp ===== -->
+  <div class="cards">
+
+    <div class="card">
+      <h3>Nghe trong tĩnh</h3>
+      <p>
+        Mở một đoạn pháp thoại ngắn.<br>
+        Không cần hiểu hết.<br>
+        Chỉ cần ngồi yên và lắng nghe.
+      </p>
+      <a href="phap-thoai.html">Bắt đầu nghe</a>
+    </div>
+
+    <div class="card">
+      <h3>Đọc một trang kinh</h3>
+      <p>
+        Không đọc vội.<br>
+        Mỗi câu là một hơi thở.<br>
+        Mỗi chữ là một bước chân trở về.
+      </p>
+      <button onclick="openKinh()">Mở kinh</button>
+    </div>
+
+    <div class="card">
+      <h3>Thỉnh về lưu giữ</h3>
+      <p>
+        Nếu một bài kinh hay lời dạy chạm tới bạn,<br>
+        hãy mang về như mang theo một hạt giống lành.
+      </p>
+      <a href="doc/bat-nha-tam-kinh.pdf" download>Tải PDF</a>
+    </div>
+
+  </div>
+
+
+  <!-- ===== Kệ kết ===== -->
+  <div class="verse">
+    “Pháp không ở nơi chữ nghĩa,<br>
+    Pháp ở nơi tâm lắng lại.<br>
+    Khi tâm yên,<br>
+    từng hơi thở… cũng là kinh.”
+  </div>
+
+  <div class="actions" style="margin-top:40px;">
+    <a href="index.html">Khép kinh lại</a>
+  </div>
+
+</section>
+
+
+<!-- ============================= -->
+<!--        MODAL ĐỌC KINH        -->
+<!-- ============================= -->
+
+<div id="pdfModal" class="pdf-modal">
+
+  <div class="pdf-box">
+
+    <div class="pdf-top">
+      <div class="pdf-title">📖 Bát Nhã Tâm Kinh</div>
+      <button class="close-btn" onclick="closeKinh()">Đóng kinh</button>
+    </div>
+
+    <iframe
+      class="pdf-frame"
+      src="doc/bat-nha-tam-kinh.pdf">
+    </iframe>
+
+  </div>
+
+</div>
+
+
+<script>
+  function openKinh(){
+    document.getElementById("pdfModal").classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeKinh(){
+    document.getElementById("pdfModal").classList.remove("active");
+    document.body.style.overflow = "auto";
+  }
+
+  // đóng khi bấm nền tối
+  document.getElementById("pdfModal").addEventListener("click", function(e){
+    if(e.target === this){
+      closeKinh();
+    }
+  });
+</script>
+
+</body>
+</html>
+

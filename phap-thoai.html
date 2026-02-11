@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Quay Về – Pháp Thoại</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    body, html {
+      margin: 0;
+      font-family: serif;
+      color: #f5f5f5;
+      overflow-x: hidden;
+      background: #000;
+    }
+
+    .bg {
+		position: fixed;
+		inset: 0;
+		width: 100vw;
+		height: 100vh;
+		background-image: url("./images/phap-thoai.png");
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		filter: brightness(0.55);
+		z-index: 0;
+	}
+
+    .section {
+      text-align: center;
+      padding: 80px 20px;
+	  position:relative;
+		z-index:1;
+    }
+
+    h2 {
+      font-weight: 400;
+      letter-spacing: 2px;
+    }
+
+    p {
+      opacity: 0.85;
+      line-height: 1.8;
+    }
+
+    .actions {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+    }
+
+    button, a {
+      padding: 12px 28px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover, a:hover {
+      background: rgba(255,255,255,0.25);
+    }
+
+    /* ======================
+       TALK SCREEN
+    ====================== */
+
+    .talk-screen {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.94);	  
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+      text-align: center;
+	  z-index: 999;
+    }
+
+    .talk-text {
+      max-width: 680px;
+      font-size: 26px;
+      line-height: 2;
+      opacity: 0;
+      transition: opacity 1.5s;
+    }
+
+    .show {
+      opacity: 1;
+    }
+
+    .footer-link {
+      position: absolute;
+      bottom: 24px;
+      font-size: 13px;
+      opacity: 0.35;
+    }
+
+    .footer-link a {
+      color: #ddd;
+      text-decoration: none;
+    }
+
+    .footer-link a:hover {
+      opacity: 0.8;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 24px;
+      font-size: 13px;
+      opacity: 0.4;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+	
+  </style>
+</head>
+
+<body>
+<div class="bg"></div>
+
+<section class="section">
+  <h2>Pháp thoại ngắn</h2>
+  <p>
+    Những lời này không để trả lời mọi câu hỏi.<br>
+    Chỉ để nhắc bạn dừng lại.
+  </p>
+
+  <div class="actions">
+    <button onclick="startPlaylist()">Lắng nghe</button>
+    <button onclick="nextTalk()">Nghe thêm một chút</button>
+    <a href="index.html">Dừng lại ở đây</a>
+  </div>
+</section>
+
+<!-- TALK SCREEN -->
+<div class="talk-screen" id="talkScreen">
+  <button class="close-btn" onclick="closeTalk()">Trở về</button>
+  <div class="talk-text" id="talkText"></div>
+
+  <div class="footer-link">
+    Nếu muốn nghe thêm, bạn có thể ghé 
+    <a href="https://youtube.com/@hocdaomoingay" target="_blank">
+      Đạo và Đời
+    </a>
+  </div>
+</div>
+
+<script>
+const screen = document.getElementById("talkScreen");
+const textEl = document.getElementById("talkText");
+
+const bell = new Audio("audio/bell.wav");
+
+let talkIndex = 0;
+let timeWatcher;
+const audio = new Audio();
+
+/* ======================
+   10 PHÁP THOẠI + AUDIO + TIMESTAMP
+   👉 chỉnh số t sau khi nghe mp3
+====================== */
+
+const talks = [
+
+{
+audio:"audio/talk1.mp3",
+lines:[
+{t:0.0, text:"Bạn không cần trở thành ai khác."},
+{t:2.6, text:"Chỉ cần dừng lại."},
+{t:4.5, text:"Thở vào… biết mình đang sống."}
+]},
+
+{
+audio:"audio/talk2.mp3",
+lines:[
+{t:0.0, text:"Có những ngày rất mệt."},
+{t:2.6, text:"Đừng cố mạnh mẽ."},
+{t:4.5, text:"Hãy cho mình được yếu một chút."}
+]},
+
+{
+audio:"audio/talk3.mp3",
+lines:[
+{t:0.0, text:"Khổ không phải vì đời khó."},
+{t:2.6, text:"Khổ… vì ta muốn đời khác đi."},
+{t:4.3, text:"Buông xuống… liền nhẹ."}
+]},
+
+{
+audio:"audio/talk4.mp3",
+lines:[
+{t:0.0, text:"Thiền không phải làm điều gì lớn."},
+{t:2.6, text:"Chỉ là ngồi yên."},
+{t:4.5, text:"Và thôi chạy."}
+]},
+
+{
+audio:"audio/talk5.mp3",
+lines:[
+{t:0.0, text:"Người làm bạn tổn thương."},
+{t:2.4, text:"cũng đang mang vết thương riêng."},
+{t:4.8, text:"Hiểu vậy… lòng bớt oán."}
+]},
+
+{
+audio:"audio/talk6.mp3",
+lines:[
+{t:0.0, text:"Hạnh phúc không ở phía trước."},
+{t:2.6, text:"Nó nằm ngay trong bước chân này."}
+]},
+
+{
+audio:"audio/talk7.mp3",
+lines:[
+{t:0.0, text:"Đừng hỏi khi nào đủ."},
+{t:2.2, text:"Chỉ cần biết… giây phút này đã đủ."}
+]},
+
+{
+audio:"audio/talk8.mp3",
+lines:[
+{t:0.0, text:"Một tách trà ấm."},
+{t:2.2, text:"Một hơi thở sâu."},
+{t:4.1, text:"Thế là một ngày bình an."}
+]},
+
+{
+audio:"audio/talk9.mp3",
+lines:[
+{t:0.0, text:"Nếu lạc đường."},
+{t:1.9, text:"cứ quay về với thân thở."},
+{t:4.2, text:"ở đó luôn có nhà."}
+]},
+
+{
+audio:"audio/talk10.mp3",
+lines:[
+{t:0.0, text:"Không cần hiểu hết Phật pháp."},
+{t:2.4, text:"Chỉ cần sống hiền lại một chút."},
+{t:4.9, text:"đời đã sáng hơn rồi."}
+]}
+
+];
+
+
+/* ======================
+   PLAYLIST LOGIC
+====================== */
+
+function startPlaylist(){
+  talkIndex = Math.floor(Math.random()*talks.length);
+
+  screen.style.display="flex";
+
+  bell.play();
+
+  setTimeout(()=>{
+    playCurrentTalk();
+  },800);
+}
+
+function playCurrentTalk(){
+
+  const talk = talks[talkIndex];
+
+  audio.src = talk.audio;
+  audio.play();
+
+  let i = 0;
+
+  textEl.innerText = "";
+
+  clearInterval(timeWatcher);
+
+  timeWatcher = setInterval(()=>{
+
+    if(i >= talk.lines.length) return;
+
+    if(audio.currentTime >= talk.lines[i].t){
+      showLine(talk.lines[i].text);
+      i++;
+    }
+
+  }, 80);
+
+  audio.onended = ()=>{
+    talkIndex = (talkIndex+1) % talks.length;
+    setTimeout(playCurrentTalk, 1200);
+  };
+}
+
+function showLine(text){
+  textEl.classList.remove("show");
+
+  setTimeout(()=>{
+    textEl.innerText = text;
+    textEl.classList.add("show");
+  },250);
+}
+
+function nextTalk(){
+
+  if(screen.style.display !== "flex"){
+    startPlaylist();
+    return;
+  }
+
+  audio.pause();
+  talkIndex = (talkIndex+1) % talks.length;
+  playCurrentTalk();
+}
+
+function closeTalk(){
+  clearInterval(timeWatcher);
+  audio.pause();
+  audio.currentTime = 0;
+  screen.style.display="none";
+}
+</script>
+
+</body>
+</html>

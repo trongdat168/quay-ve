@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Quay Về – Lễ Phật</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+  <style>
+	.footer-note{
+	  position: fixed;
+	  bottom: 18px;
+	  left: 50%;
+	  transform: translateX(-50%);
+	  max-width: 720px;
+
+	  font-size: 13px;
+	  line-height: 1.7;
+	  text-align: center;
+
+	  opacity: 0.35;
+	  color: #f5f5f5;
+
+	  pointer-events: none; /* không ảnh hưởng click */
+	}
+	</style>
+</head>
+<div class="footer-note">
+  Âm thanh và hình ảnh được sử dụng từ các nguồn chia sẻ tự do cho mục đích phi lợi nhuận, với lòng biết ơn.<br>
+  Âm thanh tụng kinh được chia sẻ từ BuddhaNet.
+</div>
+<body>
+	<div class="bg" style="background-image: url('images/le-phat.png');"></div>
+
+  <section class="section overlay">
+
+  <section class="section">
+    <h2>Không gian quay về</h2>
+    <p>
+      Phật không ở trên màn hình.<br>
+      Phật ở trong sự tỉnh thức của chính bạn.
+    </p>
+
+    <audio id="bell" src="audio/bell.wav" loop></audio>
+    <audio id="chanting" src="audio/chanting.mp3" loop></audio>
+
+    <div class="actions">
+      <button onclick="toggleAudio('bell')">Mở tiếng chuông</button>
+      <button onclick="toggleAudio('chanting')">Nghe trong tĩnh</button>
+      <a href="index.html">Khép lại nhẹ nhàng</a>
+    </div>	
+
+  </section>
+  
+</body>
+</html>
+

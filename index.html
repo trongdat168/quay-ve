@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Quay Về</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ===== Popup tĩnh lặng ===== */
+    .intro-popup {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(6px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      padding: 20px;
+      transition: opacity .6s ease;
+    }
+
+    .intro-box {
+      max-width: 680px;
+      background: rgba(20,20,20,0.85);
+      padding: 40px 36px;
+      border-radius: 18px;
+      text-align: center;
+      line-height: 1.8;
+      font-size: 16px;
+      color: #f5f5f5;
+      box-shadow: 0 0 40px rgba(0,0,0,0.6);
+      font-family: serif;
+    }
+
+    .intro-box p {
+      margin: 8px 0;
+    }
+
+    .enter-btn {
+      margin-top: 24px;
+      padding: 10px 26px;
+      background: transparent;
+      border: 1px solid #ccc;
+      color: #fff;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: .3s;
+    }
+
+    .enter-btn:hover {
+      background: #fff;
+      color: #000;
+    }
+
+    .hide {
+      opacity: 0;
+      pointer-events: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== Popup mở đầu ===== -->
+  <div id="intro" class="intro-popup">
+    <div class="intro-box">
+      <p>Không gian này được tạo ra cho những ai cần một nơi để dừng lại.</p>
+      <p>Có thể bạn không có bàn thờ riêng.<br>
+      Có thể bạn sống giữa ồn ào, chật hẹp.<br>
+      Có thể bạn chỉ cần vài phút yên tĩnh giữa một ngày nhiều lo nghĩ.</p>
+
+      <p>Nơi đây không thay thế việc tu tập,<br>
+      không thay thế Tam Bảo,<br>
+      và cũng không hứa hẹn điều gì.</p>
+
+      <p>Chúng tôi chỉ mong giữ gìn một khoảng không gian đủ lặng,<br>
+      để khi bạn chắp tay, tâm có thể quay về.</p>
+
+      <p><i>Phật không ở trên màn hình.<br>
+      Phật ở trong sự tỉnh thức của chính bạn.</i></p>
+
+      <p>Nếu hôm nay bạn có thể ngồi yên một chút,<br>
+      thở chậm hơn một hơi,<br>
+      thì không gian này đã đủ ý nghĩa rồi.</p>
+
+      <button class="enter-btn" onclick="enterSite()">Bước vào</button>
+    </div>
+  </div>
+
+
+  <!-- ===== Nội dung trang chủ ===== -->
+  <div class="bg" style="background-image: url('images/home.png');"></div>
+
+  <section class="section overlay">
+    <h1>Quay Về</h1>
+    <p>Một khoảng lặng để nhớ lại chính mình</p>
+
+    <div class="actions">
+      <a href="le-phat.html">Vào ngồi yên</a>
+      <a href="thien.html">Ngồi xuống</a>
+      <a href="phap-thoai.html">Lắng nghe</a>
+      <a href="phap-bao.html">Mở kinh</a>
+	  <a href="gieo-duyen.html">Gieo duyên</a>
+    </div>
+  </section>
+
+
+  <script>
+	  const popup = document.getElementById("intro");
+
+	  // Nếu đã vào rồi → ẩn luôn
+	  if (localStorage.getItem("visitedHome")) {
+		popup.style.display = "none";
+	  }
+
+	  function enterSite() {
+		localStorage.setItem("visitedHome", "true");
+		popup.classList.add("hide");
+
+		setTimeout(() => {
+		  popup.style.display = "none";
+		}, 600);
+	  }
+	</script>
+
+</body>
+</html>
+
