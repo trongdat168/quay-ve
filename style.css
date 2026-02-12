@@ -58,6 +58,15 @@ a:hover, button:hover {
   filter: brightness(0.45);
   z-index: -1;
 }
+.bg-img{
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:brightness(.55);
+  z-index:0;
+}
 
 .overlay {
   background: rgba(0, 0, 0, 0.45);
@@ -157,5 +166,6 @@ input,textarea,select{
     height:200px;
   }
 }
+
 
 
