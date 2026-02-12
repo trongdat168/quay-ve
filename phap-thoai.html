@@ -19,18 +19,16 @@
       background: #000;
     }
 
-    .bg {
-		position: fixed;
-		inset: 0;
-		width: 100vw;
-		height: 100vh;
-		background-image: url("./images/phap-thoai.png");
-		background-size: cover;
-		background-position: center;
-		background-repeat: no-repeat;
-		filter: brightness(0.55);
-		z-index: 0;
+    .bg-img{
+	  position:fixed;
+	  inset:0;
+	  width:100%;
+	  height:100%;
+	  object-fit:cover;
+	  filter:brightness(.55);
+	  z-index:0;
 	}
+
 
     .section {
       text-align: center;
@@ -172,7 +170,7 @@
 </head>
 
 <body>
-<div class="bg"></div>
+<img class="bg-img" src="images/phap-thoai.png" />
 
 <section class="section">
   <h2>Pháp thoại ngắn</h2>
@@ -376,6 +374,7 @@ function closeTalk(){
 
 </body>
 </html>
+
 
 
 
