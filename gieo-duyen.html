@@ -30,11 +30,13 @@ body{
 }
 
 /* ===== nền thiền ===== */
-.bg{
+.bg-img{
   position:fixed;
   inset:0;
-  background:url("images/home.png") center/cover no-repeat;
-  filter: blur(10px) brightness(.28);
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:brightness(.55);
   z-index:0;
 }
 
@@ -262,7 +264,7 @@ h1{
 <body>
 
 <!-- nền -->
-<div class="bg"></div>
+<img class="bg-img" src="images/home.png" />
 
 <!-- sương khói -->
 <div class="mist"></div>
@@ -353,6 +355,7 @@ items.forEach(i=>observer.observe(i));
 
 </body>
 </html>
+
 
 
 
