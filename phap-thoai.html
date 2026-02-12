@@ -128,29 +128,37 @@
       cursor: pointer;
     }
 	/* ======================
-   📱 FIX MOBILE TALK TEXT
+   📱 FIX DÍNH CHỮ MOBILE (chuẩn)
 ====================== */
 @media (max-width:768px){
 
   .talk-screen{
-    padding:28px 18px; /* giảm padding cho bớt chật */
+    padding:24px 16px;
   }
 
   .talk-text{
-    font-size:18px;          /* nhỏ lại */
-    line-height:1.7;         /* tránh chồng */
-    letter-spacing:0.3px;
-
+    width:100%;              /* ⭐ quan trọng nhất */
     max-width:100%;
-    padding:0 8px;
-
-    word-break:break-word;
-    white-space:normal;
-
     display:block;
+
+    font-size:19px;
+    line-height:1.75;
+
+    white-space:normal;
+    word-break:break-word;
+
+    text-align:center;
+
+    /* ⭐ chống chồng chữ khi fade */
+    position:relative;
+    transform:translateZ(0);
+    will-change:opacity;
+
+    min-height:4.5em; /* giữ chiều cao cố định → không nhảy layout */
   }
 
 }
+
 
   </style>
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-H4B9LJ48J8"></script>
@@ -316,7 +324,7 @@ function playCurrentTalk(){
 
   let i = 0;
 
-  textEl.innerText = "";
+  textEl.textContent = "";
 
   clearInterval(timeWatcher);
 
@@ -341,7 +349,7 @@ function showLine(text){
   textEl.classList.remove("show");
 
   setTimeout(()=>{
-    textEl.innerText = text;
+    textEl.textContent = text;
     textEl.classList.add("show");
   },250);
 }
@@ -368,6 +376,7 @@ function closeTalk(){
 
 </body>
 </html>
+
 
 
 
