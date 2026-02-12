@@ -127,7 +127,31 @@
       color: white;
       cursor: pointer;
     }
-	
+	/* ======================
+   📱 FIX MOBILE TALK TEXT
+====================== */
+@media (max-width:768px){
+
+  .talk-screen{
+    padding:28px 18px; /* giảm padding cho bớt chật */
+  }
+
+  .talk-text{
+    font-size:18px;          /* nhỏ lại */
+    line-height:1.7;         /* tránh chồng */
+    letter-spacing:0.3px;
+
+    max-width:100%;
+    padding:0 8px;
+
+    word-break:break-word;
+    white-space:normal;
+
+    display:block;
+  }
+
+}
+
   </style>
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-H4B9LJ48J8"></script>
 	<script>
@@ -344,6 +368,7 @@ function closeTalk(){
 
 </body>
 </html>
+
 
 
 
